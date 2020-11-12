@@ -13,10 +13,6 @@ class PrefixParquetFileFormat extends ParquetFileFormat {
     super.prepareWrite(sparkSession, job, options, dataSchema)
 
     new OutputWriterFactory {
-      // This OutputWriterFactory instance is deserialized when writing Parquet files on the
-      // executor side without constructing or deserializing ParquetFileFormat. Therefore, we hold
-      // another reference to ParquetLogRedirector.INSTANCE here to ensure the latter class is initialized.
-
       override def getFileExtension(context: TaskAttemptContext): String = {
         CodecConfig.from(context).getCodec.getExtension + ".parquet"
       }
