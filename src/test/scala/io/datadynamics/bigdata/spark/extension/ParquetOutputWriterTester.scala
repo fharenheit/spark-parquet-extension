@@ -11,7 +11,7 @@ import org.slf4j.{Logger, LoggerFactory}
 /**
  * (현재 상황) Spark 에서 spark.partitionBy().parquet()를 하여 파티션을 생성하여 파케이 파일로 저장하고 있습니다.
  *
- * @author Haneul, Kim
+ * @author 김하늘
  */
 class Exam {
 

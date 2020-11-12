@@ -1,12 +1,14 @@
 package io.datadynamics.bigdata.spark.extension
 
-import org.apache.hadoop.conf.Configuration
 import org.apache.hadoop.fs.Path
-import org.apache.hadoop.mapreduce.{RecordWriter, TaskAttemptContext}
+import org.apache.hadoop.mapreduce.TaskAttemptContext
 import org.apache.parquet.hadoop.ParquetOutputFormat
 import org.apache.spark.sql.catalyst.InternalRow
 import org.apache.spark.sql.execution.datasources.OutputWriter
 
+/**
+ * @author 김하늘
+ */
 class ParquetOutputWriter(path: String, context: TaskAttemptContext) extends OutputWriter {
 
   private val conf = context.getConfiguration
