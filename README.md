@@ -7,7 +7,7 @@ Spark에서 Parquet 파일을 생성하기 위한 추가 확장 모듈 프로젝
 Spark Shell에서 해당 모듈을 실행하기 위해서 다음과 같이 JAR 옵션으로 `.jar` 파일을 지정합니다.
 
 ```
-spark-shell --jars spark-parquet-extension.jar,jedis-3.3.0.jar
+spark-shell --jars spark-parquet-extension.jar,jedis-3.3.0.jar,commons-lang3-3.5.jar
 ```
 
 ## Redis
