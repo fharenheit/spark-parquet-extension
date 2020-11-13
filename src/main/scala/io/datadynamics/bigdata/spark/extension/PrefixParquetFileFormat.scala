@@ -28,6 +28,9 @@ class PrefixParquetFileFormat extends ParquetFileFormat {
 }
 
 object PrefixParquetFileFormat {
+  val REDIS_ENABLED = "redis.enabled"
+  val REDIS_SERVER = "redis.server"
+  val REDIS_CHANNEL_NAME = "redis.channel.name"
   val PARTITION_COLUMNS_KEY = "parquet.partition.columns"
   val DELETE_PARTITION_COLUMN_NAME_KEY = "parquet.delete.partition.column.name"
   val PREFIX_KEY = "parquet.prefix"

@@ -40,10 +40,16 @@ class Exam {
    */
   @Test
   def solve(): Unit = {
-    // exam 1
+    // REDIS CONFIGURATION
+    sc.hadoopConfiguration.setBoolean(PrefixParquetFileFormat.REDIS_ENABLED, true)
+    sc.hadoopConfiguration.set(PrefixParquetFileFormat.REDIS_CHANNEL_NAME, "test")
+    sc.hadoopConfiguration.set(PrefixParquetFileFormat.REDIS_SERVER, "localhost")
+
+    // PARTITION CONFIGURATION
     sc.hadoopConfiguration.set(PrefixParquetFileFormat.PARTITION_COLUMNS_KEY, "yyyy,MM")
     sc.hadoopConfiguration.setBoolean(PrefixParquetFileFormat.DELETE_PARTITION_COLUMN_NAME_KEY, true)
-    // exam 2
+
+    // FILE PREFIX CONFIGURATION
     sc.hadoopConfiguration.set(PrefixParquetFileFormat.PREFIX_KEY, "myPrefix")
 
     val rowRdd: RDD[Row] = sc.parallelize(rows)
@@ -55,9 +61,10 @@ class Exam {
     ))
     val df: DataFrame = spark.createDataFrame(rowRdd, schema)
 
-    val outputPath = "partitionTest"
+    val outputPath = "target/output"
     val writer: DataFrameWriter[Row] = df.write
       .format("io.datadynamics.bigdata.spark.extension.PrefixParquetFileFormat")
+      .option("basePath", "basePath")
       .option("basePath", "basePath")
     val value: DataFrameWriter[Row] = writer.partitionBy("yyyy", "MM")
     value.save(outputPath)
