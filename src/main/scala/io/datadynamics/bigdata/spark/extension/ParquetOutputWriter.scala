@@ -34,8 +34,7 @@ class ParquetOutputWriter(path: String, context: TaskAttemptContext) extends Out
         realPath = basePath + "/" + partitionIncludedRelativeOutputFilePath
       }
       if (redisEnabled) {
-        println(s"메시지 전송 : ${realPath}")
-        RedisUtils.send(redisServer, redisChannelName, outputPath.toString)
+        RedisUtils.send(redisServer, redisChannelName, realPath)
       }
       outputPath
     }
